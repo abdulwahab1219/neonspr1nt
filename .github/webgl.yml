@@ -1,0 +1,21 @@
+name: WebGL
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: game-ci/unity-builder@v4
+        with:
+          projectPath: .
+          unityVersion: 2023.3.0f1
+          targetPlatform: WebGL
+          buildName: NEØNSPR1NT
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/WebGL
